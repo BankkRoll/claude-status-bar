@@ -1,0 +1,51 @@
+name: Bug report
+description: Report something that isn't working
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+  - type: input
+    id: windows-version
+    attributes:
+      label: Windows version
+      placeholder: "Windows 11 23H2"
+    validations:
+      required: true
+  - type: dropdown
+    id: monitors
+    attributes:
+      label: Monitor setup
+      options:
+        - Single monitor
+        - Multiple monitors
+    validations:
+      required: true
+  - type: input
+    id: app-version
+    attributes:
+      label: App version
+      description: Shown at the bottom of the widget's menu.
+      placeholder: "0.1.0"
+  - type: textarea
+    id: logs
+    attributes:
+      label: Debug log
+      description: >
+        Optional. Set CLAUDE_STATUSBAR_DEBUG=1, reproduce the issue, and paste the relevant lines
+        from ~/.claude/statusbar/hooks.log.
+      render: text

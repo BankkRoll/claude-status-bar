@@ -1,0 +1,59 @@
+<Window x:Class="ClaudeStatusBar.OverlayWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Claude Status Bar"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ShowInTaskbar="False"
+        Topmost="True"
+        ResizeMode="NoResize"
+        SizeToContent="Height"
+        Width="230"
+        UseLayoutRounding="True"
+        SnapsToDevicePixels="True">
+
+    <!-- Glassy rounded pill. Fixed width + fixed-width timer slot keep the layout stable as the
+         label or timer changes. The whole pill opens the menu on either mouse button. -->
+    <Border x:Name="Root" Padding="9,0,12,0" CornerRadius="7" ClipToBounds="True" Margin="0,3,0,3"
+            Background="#59262626" BorderBrush="#22FFFFFF" BorderThickness="1"
+            MouseRightButtonUp="OnAnyClick" MouseLeftButtonUp="OnAnyClick">
+        <Border.ContextMenu>
+            <ContextMenu x:Name="Menu">
+                <MenuItem x:Name="MiTimer" Header="Show timer" IsCheckable="True" Click="OnToggleTimer"/>
+                <MenuItem x:Name="MiSound" Header="Play Completion Sound"
+                          IsCheckable="True" Click="OnToggleSound"/>
+                <Separator/>
+                <MenuItem Header="Animation" IsEnabled="False"/>
+                <MenuItem x:Name="MiStyleSpark" Header="Claude Spark" IsCheckable="True" Click="OnStyleSpark"/>
+                <MenuItem x:Name="MiStyleCode"  Header="Claude Code"  IsCheckable="True" Click="OnStyleCode"/>
+                <MenuItem x:Name="MiStyleCrab"  Header="Crab Walking" IsCheckable="True" Click="OnStyleCrab"/>
+                <Separator/>
+                <!-- Placeholder keeps the submenu expandable; items are rebuilt when it opens. -->
+                <MenuItem x:Name="MiMonitors" Header="Show on" SubmenuOpened="OnMonitorsOpening">
+                    <MenuItem Header="…" IsEnabled="False"/>
+                </MenuItem>
+                <Separator/>
+                <MenuItem x:Name="MiVersion" Header="Version" IsEnabled="False"/>
+                <MenuItem x:Name="MiQuit" Header="Quit Claude Status Bar" Click="OnQuit"/>
+            </ContextMenu>
+        </Border.ContextMenu>
+        <!-- Three fixed columns: icon, label (wide enough for the longest verb), timer. Fixed
+             widths mean the layout is stable regardless of the current word or timer value. -->
+        <Grid VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="128"/>
+                <ColumnDefinition Width="46"/>
+            </Grid.ColumnDefinitions>
+            <Image x:Name="IconImg" Grid.Column="0" Width="18" Height="18" VerticalAlignment="Center"
+                   Margin="0,0,8,0" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <TextBlock x:Name="StatusText" Grid.Column="1" VerticalAlignment="Center" FontSize="12"
+                       TextTrimming="CharacterEllipsis" TextAlignment="Left"
+                       Foreground="#FFF0F0F0" Text="Claude"/>
+            <TextBlock x:Name="TimerText" Grid.Column="2" VerticalAlignment="Center" FontSize="12"
+                       FontFamily="Consolas" TextAlignment="Right"
+                       Foreground="#FFC0C0C0" Text=""/>
+        </Grid>
+    </Border>
+</Window>
