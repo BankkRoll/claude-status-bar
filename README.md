@@ -1,6 +1,6 @@
 # Claude Status Bar
 
-<img width="800" height="450" alt="claude-status-bar-promo" src="https://github.com/user-attachments/assets/8ad21e17-1e09-4e8c-843e-d1ca850123f8" />
+<img width="800" height="450" alt="claude-status-bar-promo" src="https://github.com/user-attachments/assets/3cae9a4d-2331-4bfe-a62c-12f057e21db7" />
 
 A small Windows taskbar widget that shows Claude Code's live status: an animated icon while it
 is thinking or running a tool, rotating activity words, a yellow dot when it is awaiting your
